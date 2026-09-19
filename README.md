@@ -11,7 +11,6 @@ The platform combines **machine learning, environmental data, geographical visua
 * ⛈️ Severe Storms
 
 The goal is to provide a single platform where environmental conditions and multiple hazard risks can be viewed and understood together.
-
 ---
 
 ## 🚨 Problem
@@ -27,7 +26,6 @@ There is a need for a system that can:
 * Present risk information geographically
 * Provide easy-to-understand warnings
 * Suggest appropriate precautionary actions
-
 ---
 
 ## 💡 Our Solution
@@ -57,117 +55,92 @@ Risk Engine
 Multi-Hazard Dashboard
         ↓
 Map + Risk + Smart Alert + Recommended Action
-```
 
 ---
 
 ## ✨ Key Features
 
-### 🌊 Flood Risk Prediction
-
-Uses factors such as:
-
-* Rainfall
-* 3-hour rainfall
-* 6-hour rainfall
-* 24-hour rainfall
-* Previous river water level
-
-### ⛰️ Landslide Risk Assessment
-
-Considers environmental factors including:
-
-* Rainfall
-* Soil moisture
-* Slope
-
-### ⛈️ Severe Storm Risk Assessment
-
-Uses meteorological factors including:
-
-* Latitude
-* Longitude
-* Central pressure
-* Pressure drop
-* Wind speed
-
-### 🗺️ Interactive Risk Map
-
-Users can select a geographical location and view the corresponding environmental and hazard information.
-
-### 📊 Overall Risk
-
-The platform combines the individual hazard assessments into an overall risk assessment.
-
-### 🚨 Smart Alert
-
-The Smart Alert identifies the highest-priority hazard and displays:
-
-* Hazard name
-* Risk level
-* Probability
-* Hazard-specific warning
-* Recommended actions
-
-### 🌦️ Environmental Monitoring
-
-The dashboard displays environmental conditions used by the prediction system, including rainfall, water level, soil moisture, wind speed, pressure, and other relevant parameters.
-
-### 🛟 Recommended Actions
-
-The system provides precautionary actions depending on the identified hazard.
+* 🌊 **Flood Risk Assessment** — Estimates flood risk using rainfall and water-level conditions.
+* ⛰️ **Landslide Risk Assessment** — Considers rainfall, soil moisture, and slope conditions.
+* ⛈️ **Severe Storm Risk Assessment** — Uses meteorological parameters such as wind speed, pressure, and pressure drop.
+* 🗺️ **Interactive Map** — Displays the selected location and available monitoring stations.
+* 📊 **Overall Risk Score** — Combines individual hazard assessments into a single risk level.
+* 🚨 **Smart Alert** — Identifies the highest-priority hazard and generates a corresponding warning.
+* 🛡️ **Recommended Actions** — Provides practical precautionary actions based on the identified hazard.
+* 📡 **Environmental Monitoring** — Displays available rainfall and water-level observations from CWC datasets.
+* ⚡ **Fast API-Based Predictions** — Connects the React dashboard with a FastAPI backend for real-time prototype predictions.
 
 ---
 
 ## 🤖 Machine Learning
 
+DisasterShield AI uses hazard-specific machine learning models to estimate the risk associated with different environmental conditions.
+
 ### Flood Model
 
-The flood model uses a **Random Forest Classifier**.
+The flood model uses:
 
-Input features:
+- Rainfall
+- 3-hour rainfall
+- 6-hour rainfall
+- 24-hour rainfall
+- Previous water level
 
-```text
-Rainfall
-Rainfall 3h
-Rainfall 6h
-Rainfall 24h
-Previous Water Level
-```
-
-The training data was created from historical CWC observations using a station-specific high-water risk proxy.
+A **Random Forest Classifier** is used to estimate flood-risk probability.
 
 ### Landslide Model
 
-The project includes the landslide risk-engine structure and geological inventory data.
+The landslide risk assessment considers:
 
-Further machine-learning development requires suitable environmental predictor datasets for robust training.
+- Rainfall
+- Soil moisture
+- Slope
 
-### Storm Model
+### Severe Storm Model
 
-The storm model uses:
+The severe storm assessment considers:
 
-```text
-Latitude
-Longitude
-Central Pressure
-Pressure Drop
-Wind Speed
-```
+- Latitude
+- Longitude
+- Central pressure
+- Pressure drop
+- Wind speed
 
-The current storm model is part of the prototype and requires further validation with independent predictive features before real-world deployment.
+The models produce a probability and risk level such as **LOW, MODERATE, or HIGH**.
+
+> The predictions are intended as prototype risk-assessment outputs and should not be treated as official disaster warnings.
 
 ---
 
-## 🌐 Data Sources
+## 📡 Data Sources
 
-The project uses information from publicly available environmental and meteorological sources, including:
+DisasterShield AI uses historical and environmental datasets to support its prototype risk-assessment models.
 
-* **Central Water Commission (CWC)** — rainfall and river water-level observations
-* **India Meteorological Department (IMD)** — meteorological and storm-related information
-* **Geological Survey of India (GSI)** — geological and landslide inventory information
+### Central Water Commission (CWC)
 
-Some datasets used by the prototype are historical datasets rather than live real-time feeds.
+CWC datasets are used for rainfall and river water-level information.
+
+The dashboard can display available monitoring-station observations such as:
+
+- Rainfall
+- Previous water level
+- Current water level
+- 3-hour rainfall
+- 6-hour rainfall
+- 24-hour rainfall
+- Observation time
+
+The CWC data used in this prototype represents the **latest available observations in the uploaded datasets**, not live telemetry.
+
+### India Meteorological Department (IMD)
+
+Historical meteorological information from IMD is used for the severe-storm risk modelling component.
+
+### Geological Survey of India (GSI)
+
+GSI landslide inventory data is used as a reference dataset for the landslide component.
+
+> The datasets used in this prototype are historical and are intended for research, demonstration, and model development. They are not a substitute for official emergency alerts or government disaster-warning systems.
 
 ---
 
@@ -175,29 +148,37 @@ Some datasets used by the prototype are historical datasets rather than live rea
 
 ### Frontend
 
-* React
-* Vite
-* JavaScript
-* React Leaflet
-* Leaflet
-* CSS
+- React.js
+- Vite
+- JavaScript
+- Leaflet
+- React Leaflet
+- HTML5
+- CSS3
 
 ### Backend
 
-* Python
-* FastAPI
-* Uvicorn
+- Python
+- FastAPI
+- Uvicorn
 
 ### Machine Learning
 
-* Pandas
-* Scikit-learn
-* Joblib
+- Scikit-learn
+- Pandas
+- Joblib
 
-### Data Processing
+### Data & Visualization
 
-* Python
-* Pandas
+- CSV datasets
+- Historical environmental observations
+- Interactive geographical maps
+
+### Development Tools
+
+- Visual Studio Code
+- Git
+- GitHub
 
 ---
 
@@ -207,35 +188,45 @@ Some datasets used by the prototype are historical datasets rather than live rea
 DisasterShield/
 │
 ├── frontend/
-│   └── React + Vite application
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── ...
 │
 ├── backend/
 │   ├── main.py
 │   ├── cwc_data.py
-│   │
 │   ├── models/
 │   │   └── ml_models.py
-│   │
-│   └── risk_engine/
-│       ├── flood.py
-│       ├── landslide.py
-│       └── storm.py
+│   ├── risk_engine/
+│   │   ├── flood.py
+│   │   ├── landslide.py
+│   │   └── storm.py
+│   └── ...
 │
 ├── data/
 │   ├── raw/
 │   └── real/
 │
-└── ml/
-    ├── flood/
-    ├── landslide/
-    └── storm/
-```
+├── ml/
+│   ├── flood/
+│   ├── landslide/
+│   └── storm/
+│
+├── screenshots/
+│   ├── img1.jpg
+│   ├── img2.jpg
+│   ├── img3.jpg
+│   └── img4.jpg
+│
+├── .gitignore
+└── README.md
 
 ---
 
 ## 🖥️ Dashboard
 
-The DisasterShield AI dashboard provides a unified view of:
+The DisasterShield AI dashboard provides a unified view of environmental conditions, hazard predictions, overall risk, alerts, and recommended actions.
 
 ```text
 Location
@@ -249,157 +240,116 @@ Overall Risk
 Smart Alert
    ↓
 Recommended Actions
-```
-
-<!-- Add screenshots here -->
-
-### Dashboard Screenshot
-
-```text
-Add your dashboard screenshot here
-```
 
 ---
 
-## ⚙️ How to Run
+## 📊 Model Performance
 
-### 1. Clone the Repository
+The flood model was evaluated using a held-out test set from the prepared historical dataset.
 
-```bash
-git clone https://github.com/srinidhidhinne/DisasterShield-AI.git
-cd DisasterShield-AI
-```
+| Metric | Score |
+|---|---:|
+| Accuracy | 86.84% |
+| Precision | 68.50% |
+| Recall | 83.25% |
+| F1 Score | 75.16% |
 
-### 2. Start the Backend
+The flood model uses a station-specific high-water risk proxy derived from historical observations.
 
-```powershell
-cd backend
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-pip install fastapi uvicorn httpx pandas scikit-learn joblib
-uvicorn main:app --reload
-```
-
-Backend:
-
-```text
-http://127.0.0.1:8000
-```
-
-### 3. Start the Frontend
-
-Open another terminal:
-
-```powershell
-cd frontend
-npm install
-npm run dev
-```
-
-Frontend:
-
-```text
-http://localhost:5173
-```
+These results represent performance on the prepared historical dataset and should not be interpreted as real-world operational warning accuracy.
 
 ---
 
-## 🔌 API
+## 🧪 Testing & Validation
 
-### CWC Data
+The prototype was tested through multiple stages to verify the functionality of the system.
 
-```text
-GET /api/cwc
-```
+### Backend Testing
 
-Provides available CWC observation data used by the dashboard.
+- Tested the FastAPI prediction endpoint with representative environmental inputs.
+- Verified that the API returns flood, landslide, and severe-storm predictions.
+- Verified probability and risk-level outputs.
+- Tested the overall risk calculation.
 
-### Weather Data
+### Frontend Testing
 
-```text
-GET /api/weather
-```
+- Tested map-based location selection.
+- Tested display of environmental conditions.
+- Tested hazard prediction cards.
+- Tested overall risk display.
+- Tested Smart Alert generation.
+- Tested recommended safety actions.
+- Tested CWC monitoring-station display.
 
-Provides weather-related information used by the system.
+### End-to-End Testing
 
-### Prediction
-
-```text
-POST /api/predict
-```
-
-Runs the multi-hazard prediction and risk assessment.
-
-### Model Information
+The complete flow was tested from the React frontend to the FastAPI backend and back to the dashboard.
 
 ```text
-GET /api/models
-```
-
-Provides information about the available models.
+User Input
+    ↓
+React Frontend
+    ↓
+FastAPI Backend
+    ↓
+ML Models
+    ↓
+Risk Engine
+    ↓
+Prediction Response
+    ↓
+Dashboard
 
 ---
 
-## 📈 Future Scope
+## 🔄 How It Works
 
-The platform can be extended with:
+1. The user selects a geographical location on the interactive map.
+2. Environmental and meteorological parameters are collected or provided.
+3. The relevant parameters are passed to the corresponding hazard models.
+4. Flood, landslide, and severe-storm risks are assessed independently.
+5. The Risk Engine combines the individual hazard results.
+6. An overall risk level is generated.
+7. The system identifies the highest-priority hazard.
+8. Smart Alert generates a hazard-specific warning.
+9. Recommended precautionary actions are displayed to the user.
 
-* Real-time weather and sensor data
-* Satellite imagery
-* Advanced GIS hazard layers
-* Improved landslide prediction
-* More robust temporal model validation
-* Location-specific risk calibration
-* Mobile notifications
-* SMS alerts
-* Additional disaster types
-* Historical disaster analysis
-* Explainable AI
-* Cloud deployment
-* Scalable real-time infrastructure
+---
+
+## 💡 What Makes DisasterShield AI Different
+
+Instead of focusing on a single disaster type, DisasterShield AI combines multiple hazard assessments into one location-aware platform.
+
+The system connects:
+
+**Environmental Data → ML Models → Risk Engine → Map → Smart Alert → Recommended Action**
+
+This allows users to view multiple potential hazards and their corresponding environmental conditions through a single interface.
+
+---
+
+## 🚀 Future Scope
+
+The platform can be further enhanced with:
+
+- Real-time integration with CWC and IMD data sources
+- Continuous weather and environmental data updates
+- Improved hazard prediction models using larger datasets
+- Satellite and remote-sensing data integration
+- Additional hazards such as wildfires and extreme heat
+- Location-based notifications and mobile alerts
+- Historical risk visualization and trend analysis
+- Integration with official emergency-warning systems
+- Deployment on cloud infrastructure for large-scale use
 
 ---
 
 ## ⚠️ Limitations
 
-DisasterShield AI is a **hackathon prototype** and is not an operational disaster-warning system.
-
-Important limitations include:
-
-* Some datasets are historical rather than live.
-* Flood labels are based on a high-water risk proxy rather than an official flood-warning label.
-* Model performance on historical data does not guarantee future real-world performance.
-* The current storm model requires further validation because of limitations in the available training data.
-* The landslide component requires additional environmental predictor data for stronger machine-learning development.
-* Real-world deployment would require continuous data ingestion, extensive validation, calibration, and domain-expert review.
-
----
-
-## 🌍 Impact
-
-DisasterShield AI aims to make multi-hazard environmental information easier to understand by bringing different data sources and risk assessments together in one platform.
-
-Potential applications include:
-
-* Disaster preparedness
-* Environmental monitoring
-* Early awareness
-* Risk communication
-* Location-based hazard assessment
-* Emergency-management support
-
----
-
-## 👥 Hackathon Project
-
-**Project:** DisasterShield AI
-**Category:** Open Innovation
-**Hackathon:** HackDevengers 2.0
-
----
-
-## ⚠️ Disclaimer
-
-DisasterShield AI is an experimental prototype developed for hackathon, research, demonstration, and educational purposes.
-
-Risk estimates generated by the system should not replace official government warnings, emergency services, or professional disaster-management decisions.
+- The prototype uses historical datasets rather than continuously updated live data.
+- Hazard predictions depend on the quality and availability of input data.
+- The flood model uses a historical high-water risk proxy rather than an official flood-warning label.
+- Landslide risk assessment requires further validation with environmental predictors and independent events.
+- The severe-storm model requires further validation on independent data because of limitations in the available training dataset.
+- Model outputs should be treated as risk-assessment support and not as official disaster warnings.
+- Further testing with larger, independent, and continuously updated datasets is required before real-world deployment.
