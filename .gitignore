@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Python virtual environment
+backend/venv/
+
+# Node dependencies
+frontend/node_modules/
+
+# Environment files / secrets
+.env
+*.env
+
+# Large raw datasets
+data/real/landslide/landslide_report.pdf
+data/real/storm/godavari_water_level.csv
